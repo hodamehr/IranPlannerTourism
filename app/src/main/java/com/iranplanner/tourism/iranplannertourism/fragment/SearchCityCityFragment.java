@@ -1,6 +1,7 @@
 package com.iranplanner.tourism.iranplannertourism.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,18 +127,18 @@ public class SearchCityCityFragment extends StandardFragment implements Callback
     public void onResponse(Call<ResultItineraryList> call, Response<ResultItineraryList> response) {
 //        Log.e("get result from server", response.body().toString());
         if (response.body() != null) {
-//            ResultItineraryList jsonResponse = response.body();
-//            List<ResultItinerary> data = jsonResponse.getResultItinerary();
-//            ItineraryListFragment itineraryListFragment = new ItineraryListFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putSerializable("resuliItineraryList", (Serializable) data);
-//            bundle.putString("fromWhere", "fromCityToCity");
-//            bundle.putString("nextOffset", response.body().getStatistics().getOffsetNext().toString());
-//            itineraryListFragment.setArguments(bundle);
-//            FragmentTransaction ft = getFragmentManager().beginTransaction();
-//            ft.replace(R.id.SearchHolder, itineraryListFragment);
-//            ft.addToBackStack(null);
-//            ft.commit();
+            ResultItineraryList jsonResponse = response.body();
+            List<ResultItinerary> data = jsonResponse.getResultItinerary();
+            ItineraryListFragment itineraryListFragment = new ItineraryListFragment();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("resuliItineraryList", (Serializable) data);
+            bundle.putString("fromWhere", "fromCityToCity");
+            bundle.putString("nextOffset", response.body().getStatistics().getOffsetNext().toString());
+            itineraryListFragment.setArguments(bundle);
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.SearchHolder, itineraryListFragment);
+            ft.addToBackStack(null);
+            ft.commit();
             checkfragment = true;
 //            SearchHolderForWatiting.setVisibility(View.VISIBLE);
         }
